@@ -35,8 +35,8 @@
 |id|INT(10)|PRIMARY KEY , NOT NULL, UNSIGNED, AUTO_INCREMENT|L'identifiant du scénario|
 |title|VARCHAR(64)|NOT NULL|Le titre de l'article|
 |history|TEXT|NOT NULL|histoire du scénario|
-|objectifs|VARCHAR(255)|NOT NULL|objectifs du scénario|
-|rules|TEXT|NOT NULL|règles spécial du scénario|
+|objectifs_id|INT(10)|NOT NULL, UNSIGNED|objectifs du scénario|
+|specialRules_id|INT(10)|NOT NULL, UNSIGNED|règles spécial du scénario|
 |map|VARCHAR(255)|NULL|image de la map du scénario|
 |author_id|INT(10)|NOT NULL|identifiant de l'auteur du scénario|
 |difficulty_id|TINYINT(3)|NOT NULL, UNSIGNED|niveau de difficulté du scénario|
@@ -66,3 +66,18 @@
 |id|INT(10)|PRIMARY KEY , NOT NULL, UNSIGNED, AUTO_INCREMENT|L'identifiant de l'extension|
 |name|VARCHAR(64)|NOT NULL|Le nom de l'extension|
 |version_id|INT|NOT NULL, UNSIGNED|id de la version à laquelle appartient l'extension|
+
+## TABLE : objectifs
+
+|Champ|Type|Spécificités|Description|
+--| -- | -- | -- |
+|id|INT(10)|PRIMARY KEY , NOT NULL, UNSIGNED, AUTO_INCREMENT|L'identifiant de l'extension|
+|title|TEXT|NULL|titre des objectifs|
+|objectif|TEXT|NOT NULL|objectif du scenario|
+
+## TABLE : specialRules
+
+|Champ|Type|Spécificités|Description|
+--| -- | -- | -- |
+|id|INT(10)|PRIMARY KEY , NOT NULL, UNSIGNED, AUTO_INCREMENT|L'identifiant de l'extension|
+|rule|TEXT|NOT NULL|règle du scenario|

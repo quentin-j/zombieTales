@@ -1,0 +1,19 @@
+can have, 1N VERSION, 11 EXTENSION
+EXTENSION : name
+COMMENT : content, date
+can written, 1N AUTHOR, 11 COMMENT
+
+VERSION : name
+add, 1N VERSION, 11 SCENARIO
+can be, 11 COMMENT, 1N SCENARIO
+AUTHOR : pseudo, email, password
+
+OBJECTIFS : title, objectif
+add objectifs, 11 OBJECTIFS, 1N SCENARIO
+SCENARIO : name, resume, date, map, time, nb survivors
+is create, 1N AUTHOR, 11 SCENARIO
+
+SPECIAL RULES : rule
+add rules, 11 SPECIAL RULES, 1N SCENARIO
+behaves, 1N DIFFICULTY, 11 SCENARIO
+DIFFICULTY : name
