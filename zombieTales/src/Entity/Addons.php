@@ -22,6 +22,12 @@ class Addons
      */
     private $name;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Version::class, inversedBy="addons")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $version;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -35,6 +41,18 @@ class Addons
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getVersion(): ?Version
+    {
+        return $this->version;
+    }
+
+    public function setVersion(?Version $version): self
+    {
+        $this->version = $version;
 
         return $this;
     }

@@ -27,6 +27,12 @@ class Objectifs
      */
     private $objectif;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Scenario::class, inversedBy="objectifs")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $scenario;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +58,18 @@ class Objectifs
     public function setObjectif(string $objectif): self
     {
         $this->objectif = $objectif;
+
+        return $this;
+    }
+
+    public function getScenario(): ?Scenario
+    {
+        return $this->scenario;
+    }
+
+    public function setScenario(?Scenario $scenario): self
+    {
+        $this->scenario = $scenario;
 
         return $this;
     }

@@ -27,6 +27,17 @@ class Comment
      */
     private $publishedAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Scenario::class, inversedBy="comments")
+     */
+    private $Scenario;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="comments")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $author;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +63,30 @@ class Comment
     public function setPublishedAt(\DateTimeImmutable $publishedAt): self
     {
         $this->publishedAt = $publishedAt;
+
+        return $this;
+    }
+
+    public function getScenario(): ?Scenario
+    {
+        return $this->Scenario;
+    }
+
+    public function setScenario(?Scenario $Scenario): self
+    {
+        $this->Scenario = $Scenario;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }

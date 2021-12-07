@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\DifficultyRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -22,6 +24,16 @@ class Difficulty
      */
     private $level;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Scenario::class, mappedBy="difficulty")
+     */
+    private $scenarios;
+
+    public function __construct()
+    {
+        $this->scenarios = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -35,6 +47,36 @@ class Difficulty
     public function setLevel(string $level): self
     {
         $this->level = $level;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Scenario[]
+     */
+    public function getScenarios(): Collection
+    {
+        return $this->scenarios;
+    }
+
+    public function addScenario(Scenario $scenario): self
+    {
+        if (!$this->scenarios->contains($scenario)) {
+            $this->scenarios[] = $scenario;
+            $scenario->setDifficulty($this);
+        }
+
+        return $this;
+    }
+
+    public function removeScenario(Scenario $scenario): self
+    {
+        if ($this->scenarios->removeElement($scenario)) {
+            // set the owning side to null (unless already changed)
+            if ($scenario->getDifficulty() === $this) {
+                $scenario->setDifficulty(null);
+            }
+        }
 
         return $this;
     }

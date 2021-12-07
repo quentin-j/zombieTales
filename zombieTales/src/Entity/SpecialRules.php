@@ -22,6 +22,12 @@ class SpecialRules
      */
     private $rule;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Scenario::class, inversedBy="specialRules")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $scenario;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -35,6 +41,18 @@ class SpecialRules
     public function setRule(string $rule): self
     {
         $this->rule = $rule;
+
+        return $this;
+    }
+
+    public function getScenario(): ?Scenario
+    {
+        return $this->scenario;
+    }
+
+    public function setScenario(?Scenario $scenario): self
+    {
+        $this->scenario = $scenario;
 
         return $this;
     }

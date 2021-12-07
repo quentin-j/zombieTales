@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +38,22 @@ class User
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $etat;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="author", orphanRemoval=true)
+     */
+    private $comments;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Scenario::class, mappedBy="author", orphanRemoval=true)
+     */
+    private $scenarios;
+
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+        $this->scenarios = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -86,6 +104,66 @@ class User
     public function setEtat(?bool $etat): self
     {
         $this->etat = $etat;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getAuthor() === $this) {
+                $comment->setAuthor(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Scenario[]
+     */
+    public function getScenarios(): Collection
+    {
+        return $this->scenarios;
+    }
+
+    public function addScenario(Scenario $scenario): self
+    {
+        if (!$this->scenarios->contains($scenario)) {
+            $this->scenarios[] = $scenario;
+            $scenario->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeScenario(Scenario $scenario): self
+    {
+        if ($this->scenarios->removeElement($scenario)) {
+            // set the owning side to null (unless already changed)
+            if ($scenario->getAuthor() === $this) {
+                $scenario->setAuthor(null);
+            }
+        }
 
         return $this;
     }
