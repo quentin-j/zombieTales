@@ -49,10 +49,16 @@ class User
      */
     private $scenarios;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Role::class, mappedBy="user")
+     */
+    private $roles;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
         $this->scenarios = new ArrayCollection();
+        $this->roles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -162,6 +168,36 @@ class User
             // set the owning side to null (unless already changed)
             if ($scenario->getAuthor() === $this) {
                 $scenario->setAuthor(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Role[]
+     */
+    public function getRoles(): Collection
+    {
+        return $this->roles;
+    }
+
+    public function addRole(Role $role): self
+    {
+        if (!$this->roles->contains($role)) {
+            $this->roles[] = $role;
+            $role->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRole(Role $role): self
+    {
+        if ($this->roles->removeElement($role)) {
+            // set the owning side to null (unless already changed)
+            if ($role->getUser() === $this) {
+                $role->setUser(null);
             }
         }
 
