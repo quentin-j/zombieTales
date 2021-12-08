@@ -82,6 +82,11 @@ class Scenario
      */
     private $version;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $survivors;
+
     public function __construct()
     {
         $this->objectifs = new ArrayCollection();
@@ -288,6 +293,18 @@ class Scenario
     public function setVersion(?Version $version): self
     {
         $this->version = $version;
+
+        return $this;
+    }
+
+    public function getSurvivors(): ?int
+    {
+        return $this->survivors;
+    }
+
+    public function setSurvivors(int $survivors): self
+    {
+        $this->survivors = $survivors;
 
         return $this;
     }

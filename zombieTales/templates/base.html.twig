@@ -4,16 +4,51 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
-
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
+        <link rel="stylesheet" href="{{ asset('CSS/index.css') }}">
+        <script src="https://kit.fontawesome.com/52cf71d0dc.js" crossorigin="anonymous"></script>
+        {% block stylesheets %}{% endblock %}
+        {% block javascripts %}{% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <header>
+            <div class="headerContainer">
+                <div class="title">
+                    <h1><a class="first" href="{{ path('homepage') }}">ZombiTales</a></h1>
+                </div>
+                <ul class="headerUl">
+                    <li><a class="headerLink headerNav" href="#">Connection</a></li>
+                    <li><a class="headerLink headerNav" href="{{ path('homepage') }}">Accueil</a></li>
+                    <li><a class="headerLink headerNav" href="#">Création</a></li>
+                    <li><a class="headerLink headerNav buttonBurger" href="javascript:void(0)">Version</a></li>
+                    <ul class="burgerMenu burgerHidden">
+                        {% block versionList %}{% endblock %}
+                        <li><a href="javascript:void(0)" class="headerVersion headerLink headerNav closeButton"><i class="fas fa-times-circle"></i></a></li>
+                    </ul>
+                </ul>
+            </div>
+        </header>
+        <main>
+            <h2>racontez votre histoire ou découvrez-en de nouvelle !</h2>
+            {% block body %}{% endblock %}
+        </main>
+        <footer>
+            <ul class="form">
+                <li class="footerNav"><a class="formLink" href="javascript:void(0)">Connexion</a></li>
+                <li class="footerNav"><a class="formLink" href="javascript:void(0)">Inscription</a></li>
+                <li class="footerNav"><a class="formLink" href="javascript:void(0)">réglement du site</a></li>
+            </ul>
+            <div class="footerResaux">
+                <h3 class="footerResauxTiltle">Follow us</h3>
+                <ul class="reseaux">
+                    <li class="footerNav"><a class="reseauxLink" href="javascript:void(0)"><i
+                                class="facebookLink fab fa-facebook-square"></i></a></li>
+                    <li class="footerNav"><a class="reseauxLink" href="javascript:void(0)"><i
+                                class="instagramLink fa fa-instagram"></i></a></li>
+                    <li class="footerNav"><a class="reseauxLink" href="javascript:void(0)"><i
+                                class="mailLink fas fa-paper-plane"></i></a></li>
+                </ul>
+            </div>
+        </footer>
+        <script src="{{ asset('JS/index.js') }}"></script>
     </body>
 </html>

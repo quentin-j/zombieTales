@@ -28,6 +28,16 @@ class SpecialRules
      */
     private $scenario;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $title;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $subRule;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -53,6 +63,30 @@ class SpecialRules
     public function setScenario(?Scenario $scenario): self
     {
         $this->scenario = $scenario;
+
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(?string $title): self
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function getSubRule(): ?string
+    {
+        return $this->subRule;
+    }
+
+    public function setSubRule(?string $subRule): self
+    {
+        $this->subRule = $subRule;
 
         return $this;
     }

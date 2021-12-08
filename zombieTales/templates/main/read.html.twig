@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MainController!{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('CSS/scenar.css') }}">
+{% endblock %}
+
+{% block versionList %}
+{% for version in version_list %}
+<li><a href="javascript:void(0)" class="headerVersion headerLink headerNav">{{ version.name }}</a></li>
+{% endfor %}
+{% endblock %}
+{% block body %}
+<div class="trans">
+            <img src="{{ asset('IMG/BGScenario.png') }}" alt="image de fond sigle biozard">
+        </div>
+        <section class="scenarSection">
+            <div class="scenarLeft">
+                <div class="scenarTiltles">
+                    <h3 class="scenarTiltle">{{ scenar.title }}</h3>
+                    <p class="scenarAuth">posté par : <span class="auth">{{ scenar.author.name }}</span></p>
+                    <p class="scenarLvl">{{ scenar.difficulty.level }} / +{{ scenar.survivors }} survivant / {{ scenar.time }} minutes</p>
+                </div>
+                <div class="scenarTales">
+                    <p class="tales">{{ scenar.history }}</p>
+                </div>
+                <div class="scenarMaterials">
+                    <p class="scenarMaterial">Version : <span class="scenarVersion">{{ scenar.version.name}}.</span></p>
+                    <p class="scenarMaterial">Tiles needed : <span class="scenarTiles"> 1V, 2V, 5R, 7V, 8R, & 9R.</span></p>
+                </div>
+                <div class="scenarObjectives">
+                    <h4 class="objectivesTiltle">OBJECTIVES</h4>
+                    <ul class="objectivesUl">
+                    <p>Accomplish these Objectives in any order to win the game</p>
+                    {% for objectif in scenar.objectifs %}
+                        <li class="objectivesLi">{{ objectif.objectif }}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                <div class="scenarRules">
+                    <h4 class="rulesTiltle">SPECIAL RULES</h4>
+                    <ul class="RulesUl">
+                        {% for speRule in scenar.specialRules %}
+                        <li class="RulesLi"><span class="em">{{ speRule.title }} </span>{{ speRule.rule }}</li>
+                            <ul class="RuleSubUl">
+                                <li class="RuleSubLi">{{ speRule.subRule }}</li>
+                            </ul>
+                        {% endfor %}
+                        </ul>
+                </div>
+            </div>
+            <div class="scenarRight">
+                <img class="scenarImg" src="{{ asset('IMG/' ~ scenar.map) }}" alt="{{scenar.map}}">
+            </div>
+        </section>
+        <section class="commentSection">
+            <div class="commentList">
+            {% for comment in comment_list %}
+                <div class="comment">
+                    <p class="commentInfo">Posté par {{ comment.author.name }} le <time datetime="comment.publishedAt|date('M d, Y')">{{ comment.publishedAt|date('M d, Y') }}</time><p>
+                    <p class="commentContent">{{ comment.content }}</p>
+                </div>
+               {% endfor %}
+            </div>
+                <form action="" method="post" class="commentForm">
+                    <textarea class="textForm" name="commentFormText" id="" cols="30" rows="10" placeholder="enter your comment here"></textarea>
+                    <button type="submit">Comment</button>
+                </form>
+        </section>
+{% endblock %}

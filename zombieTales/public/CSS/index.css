@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Khand:wght@300;400&display=swap');
+
+body {
+    background-color: #FEC71F;
+    margin: 0px;
+}
+
+/*--------------HEADER------------*/
+header {
+    background: no-repeat center/100% url(../IMG/BGHeader4.jpg);
+    height: 375px;
+}
+
+.headerContainer {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    width: 600px;
+    height: 75px;
+}
+
+.headerLink {
+    color: #9D9D9D;
+    text-decoration: none;
+}
+
+.first {
+    font-family: 'Khand', sans-serif;
+    color: #000;
+    text-decoration: none;
+}
+
+.first:hover {
+    font-size: 2.5rem;
+    transition: 0.75s;
+}
+
+.headerUl, .burgerMenu {
+    display: flex;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.headerNav {
+    margin-left: 2rem;
+    position: relative;
+}
+
+.headerLink:hover {
+    color: #000;
+}
+
+.headerLink::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #FEC71F;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.headerLink:hover::before {
+    transform: scaleX(1);
+}
+.headerVersion {
+    color: rgb(102, 102, 102);
+    text-decoration: none;
+}
+.burgerMenu {
+    background: white;
+    position: absolute;
+    left: 550px;
+    top: 0px;
+    padding: 1rem;
+}
+.burgerHidden {
+    display: none;
+}
+
+/*--------------MAIN------------*/
+
+/*--------------FOOTER------------*/
+footer {
+    background-color: #141414;
+    color: white;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.form,
+.footerResaux {
+    margin-top: 2rem;
+}
+
+.footerNav,
+.reseauxLink,
+.formLink {
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.formLink,
+.footerNav {
+    margin-bottom: 0.5rem;
+    color: white;
+    position: relative;
+}
+
+.formLink:hover {
+    color: white;
+}
+
+.formLink::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #FEC71F;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.formLink:hover::before {
+    transform: scaleX(1);
+}
+
+.footerResaux {
+    display: inline;
+}
+
+.footerResauxTiltle {
+    font-family: serif;
+    font-size: 0.75rem;
+}
+
+.reseaux {
+    display: flex;
+}
+
+/*------résaux color------*/
+.facebookLink,
+.instagramLink,
+.mailLink {
+    font-size: 1.25rem;
+    margin-right: 0.75rem;
+}
+
+.facebookLink {
+    color: #1877F2;
+}
+
+.instagramLink {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    -webkit-background-clip: text;
+    /* Also define standard property for compatibility */
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.mailLink {
+    color: white;
+}
+
+/*---------RESPONSIVE DESIGN TABLETTE------------*/
+@media (max-width: 750px) {
+    header {
+        background: no-repeat center/100% url(../IMG/BGHeader4.jpg);
+        height: 400px;
+    }
+    .headerContainer {
+        height: 75px;
+        width: auto;
+    }
+    .burgerMenu {
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        list-style-type: none;
+        background: white;
+        position: absolute;
+        left: 375px;
+        top: 65px;
+        padding: 1rem;
+    }
+    .burgerHidden {
+        display: none;
+    }
+}
+/*----------RESPONSIVE DESIGN MOBILE-----------*/
+@media (max-width: 430px) {
+    header {
+        background: no-repeat center/100% url(../IMG/BGHeader4.jpg);
+        height: 400px;
+    }
+    .headerContainer {
+        height: 125px;
+        width: auto;
+    }
+    .headerUl, .burgerMenu {
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        list-style-type: none;
+    }
+    .headerLink {
+        color: #9D9D9D;
+        text-decoration: none;
+        font-size: 1.25rem;
+    }
+    .burgerMenu {
+        background: white;
+        position: absolute;
+        left: 0px;
+        top: 110px;
+        padding: 1rem;
+    }
+   .closeButton {
+       font-size: 1.5rem;
+   }
+   .burgerHidden {
+    display: none;
+}
+}
