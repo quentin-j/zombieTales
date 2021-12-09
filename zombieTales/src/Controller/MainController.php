@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Version;
 use App\Repository\CommentRepository;
 use App\Repository\ScenarioRepository;
 use App\Repository\VersionRepository;
@@ -35,6 +36,20 @@ class MainController extends AbstractController
             'scenar' => $scenar,
             'version_list' => $allVersion,
             'comment_list' => $allComment,
+        ]);
+    }
+    /**
+     * @Route("/version/{id}", name="article_list_by_version", requirements={"id"="\d+"})
+     */
+    public function articleByVersion ($id, ScenarioRepository $scenarioRepo, VersionRepository $versionRepo, Version $version)
+    {
+        $versionB = $versionRepo->find($id);
+        $allVersion = $versionRepo->findAll();
+        $scenarBy = $scenarioRepo->findBy(['version' => $version]);
+        return $this->render('main/version.html.twig', [
+            "version" => $versionB,
+            'version_list' => $allVersion,
+            "scenar_list" => $scenarBy,
         ]);
     }
 }
