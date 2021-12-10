@@ -1,15 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'main/_base_main.html.twig' %}
 
 {% block title %}Hello MainController!{% endblock %}
 {% block stylesheets %}
 <link rel="stylesheet" href="{{ asset('CSS/scenar.css') }}">
 {% endblock %}
 
-{% block versionList %}
-{% for version in version_list %}
-<li><a href="javascript:void(0)" class="headerVersion headerLink headerNav">{{ version.name }}</a></li>
-{% endfor %}
-{% endblock %}
 {% block body %}
 <div class="trans">
             <img src="{{ asset('IMG/BGScenario.png') }}" alt="image de fond sigle biozard">

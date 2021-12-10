@@ -1,20 +1,35 @@
-{% extends 'base.html.twig' %}
+{% extends 'back/version/_base_back_version.html.twig' %}
 
-{% block title %}Hello VersionController!{% endblock %}
+{% block title %}Version index{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <h1>Version index</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for version in versions %}
+            <tr>
+                <td>{{ version.id }}</td>
+                <td>{{ version.name }}</td>
+                <td>
+                    <a href="{{ path('back_version_show', {'id': version.id}) }}">show</a>
+                    <a href="{{ path('back_version_edit', {'id': version.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/var/www/html/Projet_Perso/zombieTales/zombieTales/src/Controller/Back/VersionController.php'|file_link(0) }}">src/Controller/Back/VersionController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/var/www/html/Projet_Perso/zombieTales/zombieTales/templates/back/version/index.html.twig'|file_link(0) }}">templates/back/version/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <a href="{{ path('back_version_new') }}">Create new</a>
 {% endblock %}

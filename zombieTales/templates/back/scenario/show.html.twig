@@ -1,0 +1,50 @@
+{% extends 'back/scenario/_base_back_scenario.html.twig' %}
+
+{% block title %}Scenario{% endblock %}
+
+{% block body %}
+    <h1>Scenario</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ scenario.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ scenario.title }}</td>
+            </tr>
+            <tr>
+                <th>History</th>
+                <td>{{ scenario.history }}</td>
+            </tr>
+            <tr>
+                <th>Map</th>
+                <td>{{ scenario.map }}</td>
+            </tr>
+            <tr>
+                <th>Time</th>
+                <td>{{ scenario.time }}</td>
+            </tr>
+            <tr>
+                <th>CreateAt</th>
+                <td>{{ scenario.createAt ? scenario.createAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ scenario.updatedAt ? scenario.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Survivors</th>
+                <td>{{ scenario.survivors }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_scenario_index') }}">back to list</a>
+
+    <a href="{{ path('back_scenario_edit', {'id': scenario.id}) }}">edit</a>
+
+    {{ include('back/scenario/_delete_form.html.twig') }}
+{% endblock %}

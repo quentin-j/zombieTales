@@ -17,7 +17,6 @@
         </div>
         <div class="cardDown">
             <h3 class="cardTiltleDown"><a class="cardLink" href="{{ path('scenar_read', {id : scenar.id}) }}">{{ scenar.title }}</a></h3>
-            <span class="cardInfoAuth">version : {{ scenar.version.name }}</span>
             <span class="cardDate"><time datetime="{{ scenar.createAt|date('M d, Y') }}">{{ scenar.createAt|date('M d, Y') }}</time></span>
             <p class="cardExcerpt">{{ scenar.history }}</p>
         </div>
