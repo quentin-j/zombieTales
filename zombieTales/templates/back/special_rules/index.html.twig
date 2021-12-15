@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SpecialRules index{% endblock %}
+
+{% block body %}
+    <h1>SpecialRules index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Rule</th>
+                <th>Title</th>
+                <th>SubRule</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for special_rule in special_rules %}
+            <tr>
+                <td>{{ special_rule.id }}</td>
+                <td>{{ special_rule.rule }}</td>
+                <td>{{ special_rule.title }}</td>
+                <td>{{ special_rule.subRule }}</td>
+                <td>
+                    <a href="{{ path('special_rules_show', {'id': special_rule.id}) }}">show</a>
+                    <a href="{{ path('special_rules_edit', {'id': special_rule.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('special_rules_new') }}">Create new</a>
+{% endblock %}

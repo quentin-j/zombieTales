@@ -6,9 +6,14 @@ use App\Repository\ScenarioRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=ScenarioRepository::class)
+ * @Vich\Uploadable()
  */
 class Scenario
 {
@@ -18,6 +23,14 @@ class Scenario
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @var File|null
+     * @Vich\UploadableField(mapping="map_image", fileNameProperty="map")
+     * @Assert\Image(
+     *      mimeTypes="image/png")
+     */
+    private $imageFile;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -40,12 +53,12 @@ class Scenario
     private $time;
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @ORM\Column(type="datetime")
      */
     private $createAt;
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $updatedAt;
 
@@ -89,6 +102,7 @@ class Scenario
 
     public function __construct()
     {
+        $this->createAt = new \DateTime();
         $this->objectifs = new ArrayCollection();
         $this->specialRules = new ArrayCollection();
         $this->comments = new ArrayCollection();
@@ -147,24 +161,24 @@ class Scenario
         return $this;
     }
 
-    public function getCreateAt(): ?\DateTimeImmutable
+    public function getCreateAt(): ?\DateTime
     {
         return $this->createAt;
     }
 
-    public function setCreateAt(\DateTimeImmutable $createAt): self
+    public function setCreateAt(\DateTime $createAt): self
     {
         $this->createAt = $createAt;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
+    public function setUpdatedAt(\DateTime $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
@@ -305,6 +319,21 @@ class Scenario
     public function setSurvivors(int $survivors): self
     {
         $this->survivors = $survivors;
+
+        return $this;
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageFile(File $imageFile): Scenario
+    {
+        $this->imageFile = $imageFile;
+        if ($this->imageFile instanceof UploadedFile) {
+            $this->updatedAt = new \DateTime('now');
+        }
 
         return $this;
     }

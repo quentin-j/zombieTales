@@ -34,6 +34,11 @@ class Difficulty
         $this->scenarios = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->level;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

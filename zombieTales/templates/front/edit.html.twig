@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edition du scénario : {{ scenar.title }}{% endblock %}
+
+{% block body %}
+
+<h1>Modifier un scénario</h1>
+
+{{ form_start(form) }}
+
+    {{form_row(form.imageFile)}}
+
+    <button type="submit">Modifier</button>
+
+{{ form_end(form) }}
+{% endblock %}
