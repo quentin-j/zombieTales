@@ -50,7 +50,7 @@
         </section>
         <section class="commentSection">
             <div class="commentList">
-            {% for comment in comment_list %}
+            {% for comment in scenar.comments %}
                 <div class="comment">
                     <p class="commentInfo">Posté par {{ comment.author.name }} le <time datetime="comment.publishedAt|date('M d, Y')">{{ comment.publishedAt|date('M d, Y') }}</time><p>
                     <p class="commentContent">{{ comment.content }}</p>

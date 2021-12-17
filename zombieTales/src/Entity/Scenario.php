@@ -137,12 +137,12 @@ class Scenario
         return $this;
     }
 
-    public function getMap(): ?string
+    public function getMap()
     {
         return $this->map;
     }
 
-    public function setMap(string $map): self
+    public function setMap($map): self
     {
         $this->map = $map;
 

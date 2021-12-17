@@ -27,15 +27,13 @@ class MainController extends AbstractController
     /**
      * @Route("/scenar/{id}", name="scenar_read", requirements={"id"="\d+"})
      */
-    public function read($id, ScenarioRepository $scenarioRepo, VersionRepository $versionRepo, CommentRepository $commentRepo): Response
+    public function read($id, ScenarioRepository $scenarioRepo, VersionRepository $versionRepo): Response
     {
         $scenar = $scenarioRepo->find($id);
         $allVersion = $versionRepo->findAll();
-        $allComment = $commentRepo->findAll();
         return $this->render('main/read.html.twig', [
             'scenar' => $scenar,
             'version_list' => $allVersion,
-            'comment_list' => $allComment,
         ]);
     }
     /**
