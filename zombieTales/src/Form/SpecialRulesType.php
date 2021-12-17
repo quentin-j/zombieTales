@@ -14,7 +14,7 @@ class SpecialRulesType extends AbstractType
         $builder
             ->add('rule')
             ->add('title')
-            ->add('subRule')
+            // ->add('subRule')
             ->add('scenario')
         ;
     }
