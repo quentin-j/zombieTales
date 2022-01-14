@@ -1,6 +1,0 @@
-{% extends 'base.html.twig' %}
-{% block versionList %}
-{% for version in version_list %}
-<li><a href="{{ path('article_list_by_version', {id : version.id}) }}" class="headerVersion headerLink headerNav">{{ version.name }}</a></li>
-{% endfor %}
-{% endblock versionList %}
