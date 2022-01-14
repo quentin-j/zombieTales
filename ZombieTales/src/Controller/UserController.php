@@ -30,13 +30,22 @@ class UserController extends AbstractController
     /**
      * @Route("/new", name="user_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, UserPasswordEncoderInterface $passwordEncoder,EntityManagerInterface $entityManager): Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // récupérer le MDP en clair
+            $rawPassword = $request->request->get('user')['password']['first'];
+            if (! empty($rawPassword)) {
+                // l'encoder
+                $encoderPassword = $passwordEncoder->encodePassword($user, $rawPassword);
+
+                // le renseigner dans l'objet
+                $user->setPassword($encoderPassword);
+            }
             $entityManager->persist($user);
             $entityManager->flush();
 
@@ -69,18 +78,18 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // récupérer le MDP en clair
-            $rawPassword = $request->request->get('user')['password'];
+            $rawPassword = $request->request->get('user')['password']['first'];
+            if (! empty($rawPassword)) {
+                // l'encoder
+                $encoderPassword = $passwordEncoder->encodePassword($user, $rawPassword);
 
-            // l'encoder
-            $encoderPassword = $passwordEncoder->encodePassword($user, $rawPassword);
+                // le renseigner dans l'objet
+                $user->setPassword($encoderPassword);
+            }
+                // l'enrgistrer en BDD
+                $entityManager->flush();
 
-            // le renseigner dans l'objet
-            $user->setPassword($encoderPassword);
-
-            // l'enrgistrer en BDD 
-            $entityManager->flush();
-
-            return $this->redirectToRoute('admin_user_index', [], Response::HTTP_SEE_OTHER);
+                return $this->redirectToRoute('admin_user_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('user/edit.html.twig', [
