@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MainController!{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{asset('CSS/home.css')}}">
+{% endblock %}
+{% block body %}
+ <div class="homeContainer">
+            <!--TODO pour la homePage : afficher les dernier article-->
+            <article class="card">
+                <div class="cardUp">
+                    <h3 class="cardTiltleUp"><a class="cardUpLink" href="article.html">WM7 - CHASING NIGHTMARES</a></h3>
+                    <div class="cardInfo">
+                        <span class="cardInfoAuth">by pedro le plot</span>
+                        <span class="cardInfoQuest">HARD / 4+SURVIVORS / 90+MINUTES</span>
+                    </div>
+                </div>
+                <div class="cardDown">
+                    <h3 class="cardTiltleDown"><a class="cardLink" href="article.html">WM7 - CHASING NIGHTMARES</a></h3>
+                    <span class="cardDate"><time datetime="26/10/2021">Oct 22 , 2021</time></span>
+                    <p class="cardExcerpt">As brave and bold as they are, the kids confessed that they still have nightmares about the zombies, especially Abominations.
+                    </p>
+                </div>
+            </article>
+            <article class="card">
+                <div class="cardUp">
+                    <h3 class="cardTiltleUp"><a class="cardUpLink" href="article.html">WM7 - CHASING NIGHTMARES</a></h3>
+                    <div class="cardInfo">
+                        <span class="cardInfoAuth">by pedro le plot</span>
+                        <span class="cardInfoQuest">HARD / 4+SURVIVORS / 90+MINUTES</span>
+                    </div>
+                </div>
+                <div class="cardDown">
+                    <h3 class="cardTiltleDown"><a class="cardLink" href="article.html">WM7 - CHASING NIGHTMARES</a></h3>
+                    <span class="cardDate"><time datetime="26/10/2021">Oct 22 , 2021</time></span>
+                    <p class="cardExcerpt">As brave and bold as they are, the kids confessed that they still have nightmares about the zombies, especially Abominations.</p>
+                </div>
+            </article>
+        </div>
+{% endblock %}
