@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Scenario;
+use App\Repository\ScenarioRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,10 +13,10 @@ class MainController extends AbstractController
     /**
      * @Route("/", name="main")
      */
-    public function homepage(): Response
+    public function homepage(ScenarioRepository $scenario): Response
     {
         return $this->render('main/homepage.html.twig', [
-            'controller_name' => 'MainController',
+            'scenar_list' => $scenario,
         ]);
     }
 }
