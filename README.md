@@ -29,6 +29,7 @@ site colaboratif de création de scénario pour les différentes version/extensi
 - relations entre les entités
 - dynamisation
 - CRUD
+- Formulaire de connexion
 - formulaire d'ajout de scénario (gérer l'ajout de la map au format jpeg)
 
 ### Phase 4 : Back-office + sécurité
